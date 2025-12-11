@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "builds": [
+    { "src": "api/**/*.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/api/index.js" },
+    { "src": "/admin", "dest": "/api/admin.js" },
+    { "src": "/admin/edit/(\\d+)", "dest": "/api/edit.js?id=$1" },
+    { "src": "/admin/update_order", "dest": "/api/update_order.js" },
+    { "src": "/admin/delete/(\\d+)", "dest": "/api/delete.js?id=$1" }
+  ]
+}
