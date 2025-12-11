@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/delete/:id', async (req, res) => {
+app.post('/admin/delete/:id', async (req, res) => {
     const id = req.params.id;
     await pool.query('DELETE FROM resources WHERE id=$1', [id]);
     res.redirect('/admin');
