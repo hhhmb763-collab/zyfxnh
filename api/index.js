@@ -1,24 +1,23 @@
-// api/index.js
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
-import fs from 'fs';
 import path from 'path';
+import fs from 'fs';
 import ejs from 'ejs';
 
 const app = express();
 const prisma = new PrismaClient();
 
 app.get('/', async (req, res) => {
-    const query = req.query.q;
     try {
+        const query = req.query.q;
         let resources;
         if (query) {
             resources = await prisma.resource.findMany({
                 where: {
                     OR: [
                         { name: { contains: query, mode: 'insensitive' } },
-                        { tags: { contains: query, mode: 'insensitive' } },
-                        { description: { contains: query, mode: 'insensitive' } }
+                        { description: { contains: query, mode: 'insensitive' } },
+                        { tags: { contains: query, mode: 'insensitive' } }
                     ]
                 },
                 orderBy: [
@@ -39,7 +38,7 @@ app.get('/', async (req, res) => {
         res.send(ejs.render(template, { resources, search_query: query }));
     } catch (error) {
         console.error(error);
-        res.status(500).send('数据库查询失败');
+        res.status(500).send('Internal Server Error');
     }
 });
 
