@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>后台管理</title>
+<link rel="stylesheet" href="/style.css">
+<script src="/script.js"></script>
+</head>
+<body>
+<header><h1>后台管理</h1></header>
+<div class="container">
+<h2>添加资源</h2>
+<form method="post">
+<input type="text" name="name" placeholder="名称" required>
+<input type="text" name="r_type" placeholder="类型">
+<input type="text" name="description" placeholder="描述">
+<input type="text" name="tg_link" placeholder="TG链接">
+<input type="text" name="pan_link" placeholder="网盘链接">
+<input type="text" name="pan_pass" placeholder="网盘密码">
+<input type="text" name="tags" placeholder="标签">
+<button type="submit">添加</button>
+</form>
+
+<h2>资源列表</h2>
+<table>
+<tr><th>ID</th><th>名称</th><th>类型</th><th>描述</th><th>操作</th></tr>
+<% resources.forEach(r => { %>
+<tr>
+<td><%= r.id %></td>
+<td><%= r.name %></td>
+<td><%= r.r_type %></td>
+<td><%= r.description %></td>
+<td>
+<a href="/admin/edit/<%= r.id %>">编辑</a>
+<form action="/admin/delete/<%= r.id %>" method="post" style="display:inline;">
+<button type="submit">删除</button>
+</form>
+</td>
+</tr>
+<% }) %>
+</table>
+</div>
+</body>
+</html>
