@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>编辑资源</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header><h1>编辑资源</h1></header>
+<div class="container">
+<form method="post">
+<input type="text" name="name" value="<%= resource.name %>" required>
+<input type="text" name="r_type" value="<%= resource.r_type %>">
+<input type="text" name="description" value="<%= resource.description %>">
+<input type="text" name="tg_link" value="<%= resource.tg_link %>">
+<input type="text" name="pan_link" value="<%= resource.pan_link %>">
+<input type="text" name="pan_pass" value="<%= resource.pan_pass %>">
+<input type="text" name="tags" value="<%= resource.tags %>">
+<button type="submit">保存</button>
+</form>
+</div>
+</body>
+</html>
